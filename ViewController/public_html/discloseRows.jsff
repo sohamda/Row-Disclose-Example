@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <af:panelGridLayout id="pgl1">
+        <af:gridRow height="100%" id="gr1">
+            <af:gridCell width="100%" halign="stretch" valign="stretch" id="gc1">
+                <!-- Content -->
+                <af:table id="dis10" rowSelection="single" columnStretching="last"
+                          value="#{backingBeanScope.TableBean.tableRows}" rowBandingInterval="0" var="row"
+                          rowDisclosureListener="#{backingBeanScope.TableBean.tableRowDiscloseListener}"
+                          binding="#{backingBeanScope.TableBean.table}">
+                    <af:column id="c1" sortable="false" headerText="ID">
+                        <af:outputText value="#{row.id}" id="ot1"/>
+                    </af:column>
+                    <af:column id="c2" sortable="false" headerText="Name">
+                        <af:outputText value="#{row.name}" id="ot2"/>
+                    </af:column>
+                    <af:column id="c3" sortable="false" headerText="Surname">
+                        <af:outputText value="#{row.surname}" id="ot3"/>
+                    </af:column>
+                    <f:facet name="detailStamp">
+                        <af:panelGroupLayout id="pgl2">
+                            <af:listView id="lv1" selection="none" value="#{backingBeanScope.TableBean.disclosedTable}"
+                                         var="discloseRow">
+                                <f:facet name="groupHeaderStamp"/>
+                                <af:listItem id="li1">
+                                    <af:panelGroupLayout id="pgl3">
+                                        <af:outputText value="#{discloseRow.validFrom} - #{discloseRow.validTo} - #{discloseRow.address}" id="ot4"/>
+                                    </af:panelGroupLayout>
+                                </af:listItem>
+                            </af:listView>
+                        </af:panelGroupLayout>
+                    </f:facet>
+                </af:table>
+            </af:gridCell>
+        </af:gridRow>
+    </af:panelGridLayout>
+</ui:composition>
